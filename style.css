@@ -1,0 +1,1094 @@
+/* Basic Resets & Font Imports */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8; /* Light grey background */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Header - General */
+.main-header, .detail-header {
+    background-color: #1a1a1a; /* Uber's dark feel */
+    color: #fff;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.main-header .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #4CAF50; /* A touch of green for 'monitor' aspect */
+}
+
+/* Main Header Search Bar */
+.main-header .search-bar {
+    flex-grow: 1;
+    max-width: 600px;
+    position: relative;
+    margin: 0 20px;
+}
+.main-header .search-bar input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border: none;
+    border-radius: 25px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+}
+.main-header .search-bar input::placeholder {
+    color: #bbb;
+}
+.main-header .search-bar .fa-search {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #bbb;
+}
+
+/* User Profile & Settings Icon Wrapper */
+.header-right-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between profile and settings */
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: default; /* Not directly clickable for a dropdown in this version */
+}
+.user-profile .avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+}
+.user-profile span {
+    font-weight: 500;
+}
+
+/* Settings Icon & Dropdown Menu Styling */
+.settings-icon-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.settings-icon {
+    font-size: 24px;
+    color: #bbb;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.settings-icon:hover {
+    color: #fff;
+}
+
+.settings-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px); /* Position below the icon */
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    min-width: 250px;
+    z-index: 100; /* Ensure it's above other content */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+.settings-dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.settings-dropdown-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    transition: background-color 0.2s ease;
+}
+.settings-dropdown-menu a:hover {
+    background-color: #f0f2f5;
+}
+
+
+/* Health Summary Cards */
+.health-summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out;
+}
+/* Apply hover to dashboard cards only */
+.health-summary-cards .card:hover {
+    transform: translateY(-5px);
+}
+
+
+.card h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #555;
+    font-weight: 500;
+}
+.card .count {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 10px 0 0;
+}
+/* Center text for the summary cards specifically */
+.health-summary-cards .card {
+    text-align: center;
+}
+
+
+.green-card .count { color: #4CAF50; }
+.yellow-card .count { color: #FFC107; }
+.red-card .count { color: #F44336; }
+
+/* Campaign List Section */
+.campaign-list-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.filters-and-search {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    /* Removed fixed gap and will apply more specific spacing below */
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between filter dropdowns */
+    margin-right: 20px; /* Space after filters group before search */
+}
+.filters label {
+    font-weight: 500;
+    color: #555;
+}
+.filters select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Adjusted search bar in main page */
+.list-search-bar {
+    position: relative;
+    flex-grow: 1; /* Allow it to grow */
+    max-width: 400px; /* Reduce max size */
+    margin-right: 20px; /* Space after search bar before create button */
+}
+.list-search-bar input {
+    width: 100%;
+    padding: 8px 12px 8px 35px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none;
+}
+.list-search-bar .fa-search {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+/* Create Campaign Button - Main Page */
+.create-campaign-btn {
+    white-space: nowrap; /* Prevents text from wrapping */
+    margin-left: auto; /* Pushes the button to the far right */
+    padding: 10px 18px; /* Adjusted padding */
+    font-size: 15px; /* Adjusted font size */
+    background-color: #4CAF50; /* Primary button color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.create-campaign-btn:hover {
+    background-color: #45a049;
+}
+
+
+/* Campaign Table */
+.campaign-table-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow-x: auto; /* For responsiveness on small screens */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Row Status Coloring - Left Border and Background */
+table tbody tr {
+    border-left: 5px solid transparent; /* Default transparent border */
+    transition: background-color 0.2s ease, border-left-color 0.2s ease;
+}
+
+/* Apply background color with a slightly higher opacity and a more prominent left border */
+table tbody tr.status-border-green {
+    border-left-color: #4CAF50; /* Green */
+    background-color: rgba(76, 175, 80, 0.1); /* Darker very light green background */
+}
+table tbody tr.status-border-yellow {
+    border-left-color: #FFC107; /* Yellow */
+    background-color: rgba(255, 193, 7, 0.1); /* Darker very light yellow background */
+}
+table tbody tr.status-border-red {
+    border-left-color: #F44336; /* Red */
+    background-color: rgba(244, 67, 54, 0.1); /* Darker very light red background */
+}
+
+
+table tbody tr:hover {
+    background-color: #f0f2f5; /* Maintain a slightly darker hover background */
+}
+
+.view-btn {
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.2s ease;
+}
+.view-btn:hover {
+    color: #4CAF50;
+}
+
+/* Campaign Detail Page Specific Styles */
+.detail-header {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Increased gap for space between status and settings */
+    gap: 30px; /* Increased from 20px */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.detail-header .back-btn {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+.detail-header .back-btn:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.detail-header .campaign-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    flex-grow: 1; /* Allows title to take available space */
+    text-align: center;
+}
+
+/* Adjusted status badge size */
+.status-badge {
+    padding: 6px 12px; /* Reduced padding */
+    border-radius: 16px; /* Slightly smaller border-radius */
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px; /* Reduced font size */
+    color: #fff;
+    white-space: nowrap; /* Prevent wrapping */
+}
+.green-bg { background-color: #4CAF50; }
+.yellow-bg { background-color: #FFC107; }
+.red-bg { background-color: #F44336; }
+
+/* Detail Page Settings Icon */
+.detail-page-settings {
+    position: relative; /* Keep it relative for its dropdown */
+}
+
+
+/* Section Headers with Icons */
+.card h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+.card h2 .fas {
+    color: #666; /* Icon color for headers */
+}
+
+/* Campaign Overview Section */
+.campaign-overview {
+    margin-top: 30px;
+}
+.campaign-overview .overview-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for details */
+    gap: 15px 30px;
+    margin-bottom: 20px;
+}
+.campaign-overview p {
+    margin: 0; /* Remove default paragraph margin */
+}
+.campaign-overview p strong {
+    color: #333;
+}
+.campaign-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+.action-btn, /* This also applies to modal buttons */
+.primary-btn,
+.secondary-btn {
+    padding: 14px 30px; /* Increased padding further */
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 17px; /* Increased font size */
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+.primary-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+}
+.primary-btn:hover {
+    background-color: #45a049;
+}
+.secondary-btn {
+    background-color: #fff;
+    color: #1a1a1a;
+    border: 1px solid #ddd;
+}
+.secondary-btn:hover {
+    background-color: #f0f2f5;
+    border-color: #ccc;
+}
+
+
+/* KPI Cards on Detail Page */
+.kpi-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.kpi-card {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.kpi-card .kpi-name {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.kpi-card .kpi-value {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.kpi-card .kpi-change {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+}
+.kpi-card .kpi-change.up { color: #4CAF50; }
+.kpi-card .kpi-change.down { color: #F44336; }
+
+.kpi-card .sparkline-placeholder {
+    width: 100%;
+    height: 40px; /* Placeholder height */
+    background-color: #f0f2f5;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+/* Performance Trends (Unified Chart Section) */
+.performance-trends {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.performance-trends h2 { /* Ensure header styles apply */
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.chart-controls {
+    display: flex;
+    flex-wrap: wrap; /* Allow filters to wrap */
+    gap: 15px 20px; /* Row and column gap */
+    margin-bottom: 25px; /* Space between controls and chart */
+    border-bottom: 1px solid #eee; /* Separator */
+    padding-bottom: 20px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.filter-group label {
+    font-weight: 500;
+    color: #555;
+    flex-shrink: 0; /* Prevent label from shrinking */
+}
+.filter-group select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    min-width: 140px; /* Ensures consistent width for selects */
+}
+.chart-controls .apply-filters-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: none;
+    margin-left: auto; /* Push button to the right on large screens */
+}
+.chart-controls .apply-filters-btn:hover {
+    background-color: #333;
+}
+
+.chart-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    /* Basic styling for the chart container */
+    background-color: #fcfcfc;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 20px; /* Add some padding around the chart */
+    height: 300px; /* Fixed height for the chart area, adjust as needed */
+    justify-content: center; /* Center canvas vertically */
+}
+
+/* Chart.js canvas will fill this space */
+#performanceChart {
+    width: 100% !important; /* Ensure canvas takes full width of its parent */
+    height: 100% !important; /* Ensure canvas takes full height of its parent */
+    min-height: 250px; /* Minimum height for chart visibility */
+}
+
+
+/* New Chart Label below the graph */
+.chart-label {
+    font-size: 15px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px; /* Adjust spacing from the chart */
+    font-weight: 500;
+}
+.chart-label-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.chart-info {
+    font-size: 14px;
+    color: #777;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+/* Campaign Diagnostics */
+.campaign-diagnostics {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+.diagnostic-status-msg {
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+.yellow-text { color: #FFC107; }
+.red-text { color: #F44336; }
+.green-text { color: #4CAF50; }
+
+.campaign-diagnostics ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.campaign-diagnostics li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.4;
+}
+.campaign-diagnostics li .fa-exclamation-triangle { color: #FFC107; font-size: 18px; margin-top: 2px; }
+.campaign-diagnostics li .fa-times-circle { color: #F44336; font-size: 18px; margin-top: 2px; }
+
+
+/* Modal/Popover Styling (Modernized) */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of everything */
+    backdrop-filter: blur(3px); /* Subtle blur for modern feel */
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px; /* More rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Softer, deeper shadow */
+    width: 90%;
+    max-width: 700px; /* Wider for better layout */
+    animation: fadeIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Increased gap */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0; /* Lighter border */
+    padding-bottom: 15px;
+    margin-bottom: 10px; /* Reduced margin */
+}
+.modal-header h2 {
+    margin: 0;
+    font-size: 26px; /* Slightly larger heading */
+    font-weight: 700; /* Bolder */
+    color: #1a1a1a;
+}
+.modal-header .close-btn {
+    font-size: 32px; /* Larger close icon */
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.modal-header .close-btn:hover {
+    color: #333;
+}
+
+.modal-body p {
+    margin-top: 0;
+    margin-bottom: 25px; /* More space below descriptive text */
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Alert List Container */
+.alerts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between individual alert items */
+    margin-bottom: 20px;
+}
+
+/* Individual Alert Item */
+.alert-item {
+    display: flex;
+    flex-direction: row; /* Changed from column to row to place content inline */
+    align-items: center; /* Vertically center content */
+    justify-content: space-between; /* Pushes the label group to the left and controls to the right */
+    flex-wrap: wrap; /* Allows the entire row to wrap if screen is too narrow */
+    gap: 15px; /* Increased gap for better spacing between elements */
+    padding: 15px 20px;
+    background-color: #fcfcfc;
+    border: 1px solid #e9e9e9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.alert-item label {
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+    display: flex; /* Make the label content (selects, input) a flex container */
+    align-items: center; /* Vertically align items within the label */
+    gap: 10px; /* Space between individual elements like select, input, unit */
+    flex-wrap: wrap; /* Allow the inputs within the label to wrap if needed */
+    flex-grow: 1; /* Allows the label section to grow and take available space */
+}
+
+.alert-item select,
+.alert-item input[type="number"] {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.alert-item select:focus,
+.alert-item input[type="number"]:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76,175,80,0.2);
+}
+
+.alert-item input[type="number"] {
+    width: 90px; /* Slightly adjusted width for number input */
+    text-align: center;
+}
+
+.alert-item .unit {
+    font-weight: 500;
+    color: #555;
+    font-size: 15px;
+    margin-left: -5px; /* Pull unit closer to number */
+    margin-right: 5px; /* Space after unit */
+}
+
+.alert-item .alert-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap; /* Changed to nowrap to keep remove button always in one line if possible */
+    gap: 10px;
+    flex-shrink: 0; /* Prevents controls from shrinking too much */
+}
+
+.remove-alert-btn {
+    background-color: #f8f8f8; /* Light background for remove button */
+    color: #f44336; /* Red icon color */
+    border: 1px solid #e0e0e0;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    /* margin-left: auto;  Removed this as justify-content on parent handles spacing */
+}
+.remove-alert-btn:hover {
+    background-color: #ffebee;
+    border-color: #ef9a9a;
+}
+.remove-alert-btn .fas {
+    font-size: 14px; /* Adjust icon size */
+}
+
+/* Add New Threshold Button in Modal */
+.add-new-alert-btn {
+    background-color: #f0f2f5; /* Lighter background for secondary action */
+    color: #555;
+    border: 1px dashed #ccc; /* Dashed border to indicate add */
+    padding: 12px 20px; /* Increased padding to make it larger */
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px; /* Increased font size */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    align-self: flex-start;
+    cursor: pointer;
+}
+.add-new-alert-btn:hover {
+    background-color: #e0e2e5;
+    border-color: #bbb;
+}
+
+/* NEW: Daily Summary Checkbox Section */
+.daily-summary-section {
+    margin-top: 30px; /* Space from the alert list above */
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between checkbox and text */
+}
+
+/* Custom Checkbox Styling for better aesthetics */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 30px; /* Space for the custom checkbox */
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0px; /* Adjust vertical alignment */
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* On mouse-over, add a light background color */
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #ccc;
+    border-color: #bbb;
+}
+
+/* When the checkbox is checked, add a primary background */
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #e0e0e0; /* Lighter border */
+    padding-top: 20px;
+    margin-top: 10px; /* Reduced margin */
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+    .main-header .search-bar {
+        width: 100%;
+        margin: 0;
+    }
+    .header-right-menu {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .user-profile {
+        justify-content: flex-start;
+    }
+
+    .health-summary-cards {
+        grid-template-columns: 1fr; /* Stack cards on small screens */
+    }
+
+    .filters-and-search {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px; /* Default gap for stacked items */
+    }
+    .filters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-right: 0; /* Remove horizontal margin for stacked layout */
+        width: 100%; /* Take full width */
+    }
+    .filters select {
+        width: 100%; /* Make filter selects full width */
+    }
+
+    .list-search-bar {
+        width: 100%;
+        max-width: unset;
+        margin-right: 0;
+    }
+    .create-campaign-btn {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    table th, table td {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .detail-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        gap: 15px;
+    }
+    .detail-header .campaign-title {
+        text-align: left;
+        font-size: 24px;
+    }
+    .status-badge {
+        width: fit-content;
+        margin-right: auto;
+    }
+    .detail-page-settings {
+        position: static;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .settings-dropdown-menu {
+        top: unset;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        min-width: unset;
+        border-radius: 8px 8px 0 0;
+    }
+    .settings-dropdown-menu.show {
+        transform: translateY(0);
+    }
+
+
+    .kpi-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .performance-trends, .campaign-diagnostics, .campaign-overview {
+        padding: 20px;
+    }
+    .campaign-overview .overview-details-grid {
+        grid-template-columns: 1fr;
+    }
+    .campaign-actions {
+        flex-direction: column;
+    }
+
+    /* Chart Controls Responsiveness */
+    .chart-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .filter-group {
+        width: 100%;
+    }
+    .filter-group select {
+        width: 100%;
+        min-width: unset;
+    }
+    .chart-controls .apply-filters-btn {
+        margin-left: 0;
+        width: 100%;
+    }
+
+
+    /* Modal responsiveness */
+    .modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+    .modal-header h2 {
+        font-size: 20px;
+    }
+    .modal-body p {
+        font-size: 14px;
+    }
+    .alert-item {
+        flex-direction: column; /* Revert to column on small screens to stack */
+        align-items: flex-start; /* Align items to the start when stacked */
+        padding: 12px 15px;
+    }
+    .alert-item label {
+        width: 100%; /* Make label take full width on small screens */
+        gap: 8px; /* Slightly smaller gap within label on mobile */
+        justify-content: space-between; /* Distribute items within label */
+    }
+    .alert-item select,
+    .alert-item input[type="number"] {
+        flex-grow: 1; /* Allow inputs to grow on small screens */
+    }
+    .alert-item input[type="number"] {
+         width: auto; /* Allow width to be flexible */
+    }
+    .alert-item .alert-controls {
+        flex-direction: row; /* Keep remove button and any other controls inline */
+        justify-content: flex-end; /* Push controls to the right within their section */
+        width: 100%; /* Make controls take full width on small screens */
+    }
+    .remove-alert-btn {
+        margin-left: 0; /* Ensure no auto margin on mobile */
+        /* width: 100%; Removed this to allow button to be auto width */
+        justify-content: center;
+    }
+
+    /* Daily Summary Section Responsive */
+    .daily-summary-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .checkbox-container {
+        width: 100%;
+    }
+}

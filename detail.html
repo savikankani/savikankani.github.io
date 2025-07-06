@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaign Detail - India-q3 ride acquisition july</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="detail-header">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+        <h1 class="campaign-title">India-q3 ride acquisition july</h1>
+        <div class="status-badge green-bg">Active</div>
+        <div class="settings-icon-wrapper detail-page-settings">
+            <i class="fas fa-cog settings-icon" id="settingsIcon"></i>
+            <div class="settings-dropdown-menu" id="settingsDropdown">
+                <a href="#">Edit Campaign</a>
+                <a href="#">Pause Campaign</a>
+                <a href="#">View Analytics</a>
+                <a href="#" id="openAlertsModal">Set Alerts</a>
+                <a href="#">Campaign History</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card campaign-overview">
+            <h2><i class="fas fa-info-circle"></i> Campaign Overview</h2>
+            <div class="overview-details-grid">
+                <p><strong>Campaign ID:</strong> CMP-001</p>
+                <p><strong>Start Date:</strong> 2025-06-15</p>
+                <p><strong>End Date:</strong> 2025-07-31</p>
+                <p><strong>Budget:</strong> $20,000</p>
+                <p><strong>Target Audience:</strong> 18-45, US, online shoppers</p>
+                <p><strong>Platform:</strong> Google Ads, Facebook Ads</p>
+                <p><strong>Goal:</strong> Increase product sales by 15%</p>
+                <p><strong>Last Updated:</strong> 2025-07-05 10:30 AM</p>
+            </div>
+            <div class="campaign-actions">
+                <button class="action-btn primary-btn"><i class="fas fa-play"></i> Restart Campaign</button>
+                <button class="action-btn secondary-btn"><i class="fas fa-pause"></i> Pause Campaign</button>
+                <button class="action-btn secondary-btn"><i class="fas fa-edit"></i> Edit Settings</button>
+            </div>
+        </section>
+
+        <section class="kpi-cards">
+            <div class="kpi-card">
+                <div class="kpi-name">Spend</div>
+                <div class="kpi-value">$15,000</div>
+                <div class="kpi-change up"><i class="fas fa-arrow-up"></i> 5% vs. Last Week</div>
+                <div class="sparkline-placeholder"></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-name">Impressions</div>
+                <div class="kpi-value">1.2M</div>
+                <div class="kpi-change up"><i class="fas fa-arrow-up"></i> 10% vs. Last Week</div>
+                <div class="sparkline-placeholder"></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-name">Clicks</div>
+                <div class="kpi-value">50K</div>
+                <div class="kpi-change up"><i class="fas fa-arrow-up"></i> 8% vs. Last Week</div>
+                <div class="sparkline-placeholder"></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-name">Conversions</div>
+                <div class="kpi-value">1,250</div>
+                <div class="kpi-change up"><i class="fas fa-arrow-up"></i> 12% vs. Last Week</div>
+                <div class="sparkline-placeholder"></div>
+            </div>
+        </section>
+
+        <section class="performance-trends">
+            <h2><i class="fas fa-chart-line"></i> Performance Trends</h2>
+            <div class="chart-controls">
+                <div class="filter-group">
+                    <label for="metric-select">Metric:</label>
+                    <select id="metric-select">
+                        <option value="impressions">Impressions</option>
+                        <option value="clicks">Clicks</option>
+                        <option value="conversions">Conversions</option>
+                        <option value="spend">Spend</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="timeframe-select">Timeframe:</label>
+                    <select id="timeframe-select">
+                        <option value="7days">Last 7 Days</option>
+                        <option value="30days">Last 30 Days</option>
+                        <option value="90days">Last 90 Days</option>
+                        <option value="custom">Custom Range</option>
+                    </select>
+                </div>
+                <button class="apply-filters-btn">Apply Filters</button>
+            </div>
+            <div class="chart-area">
+                <canvas id="performanceChart"></canvas>
+            </div>
+            <div class="chart-info">
+                <span class="chart-label"><span class="chart-label-dot" style="background-color: #4CAF50;"></span> Selected Metric Performance Over Time</span>
+            </div>
+        </section>
+
+        <section class="card campaign-diagnostics">
+            <h2><i class="fas fa-stethoscope"></i> Campaign Diagnostics</h2>
+            <p class="diagnostic-status-msg green-text">Campaign health is good. All metrics are within expected ranges.</p>
+            <ul>
+                <li><i class="fas fa-check-circle green-text"></i> No critical issues detected.</li>
+            </ul>
+        </section>
+    </main>
+
+    <div id="settingsModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Set Alerts & Thresholds</h2>
+                <span class="close-btn" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Configure custom alerts for your campaign performance metrics. You will be notified if a campaign's performance falls outside these thresholds.</p>
+
+                <div class="alerts-list" id="alertsList">
+                    <div class="alert-item">
+                        <label>
+                            If <select class="metric-select">
+                                <option value="spend">Spend</option>
+                                <option value="impressions">Impressions</option>
+                                <option value="clicks">Clicks</option>
+                                <option value="ctr">CTR</option>
+                                <option value="conversionRate">Conversion Rate</option>
+                            </select>
+                            <select class="condition-select">
+                                <option value="dropsBelow">drops below</option>
+                                <option value="exceeds">exceeds</option>
+                            </select>
+                            <input type="number" class="threshold-input" value="10000">
+                            <span class="unit">$</span>
+                        </label>
+                        <div class="alert-controls">
+                            <button class="remove-alert-btn"><i class="fas fa-trash-alt"></i> Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="add-new-alert-btn" id="addNewAlertBtn">
+                    <i class="fas fa-plus-circle"></i> Add New Threshold
+                </button>
+
+                <div class="daily-summary-section">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="dailySummaryEmail">
+                        <span class="checkmark"></span>
+                        Receive daily summary on email
+                    </label>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button class="secondary-btn" id="cancelAlerts">Cancel</button>
+                <button class="primary-btn" id="saveAlerts">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const settingsIcon = document.getElementById('settingsIcon');
+            const settingsDropdown = document.getElementById('settingsDropdown');
+            const openAlertsModalBtn = document.getElementById('openAlertsModal');
+            const settingsModal = document.getElementById('settingsModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            const cancelAlertsBtn = document.getElementById('cancelAlerts');
+            const addNewAlertBtn = document.getElementById('addNewAlertBtn');
+            const alertsList = document.getElementById('alertsList');
+
+            // Chart.js setup (from previous interactions)
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            let performanceChart; // Declare chart variable globally or in a scope accessible to updateChart
+
+            function createOrUpdateChart(metric = 'impressions', timeframe = '7days') {
+                // Dummy data generation based on metric and timeframe
+                const labels = [];
+                const data = [];
+                const today = new Date();
+
+                let days = 7;
+                if (timeframe === '30days') days = 30;
+                if (timeframe === '90days') days = 90;
+                // 'custom' would require actual date inputs
+
+                for (let i = days - 1; i >= 0; i--) {
+                    const d = new Date(today);
+                    d.setDate(today.getDate() - i);
+                    labels.push(d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+
+                    let value;
+                    switch (metric) {
+                        case 'impressions':
+                            value = Math.floor(Math.random() * (200000 - 50000 + 1)) + 50000;
+                            break;
+                        case 'clicks':
+                            value = Math.floor(Math.random() * (10000 - 2000 + 1)) + 2000;
+                            break;
+                        case 'conversions':
+                            value = Math.floor(Math.random() * (500 - 50 + 1)) + 50;
+                            break;
+                        case 'spend':
+                            value = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+                            break;
+                        default:
+                            value = 0;
+                    }
+                    data.push(value);
+                }
+
+                if (performanceChart) {
+                    performanceChart.destroy(); // Destroy existing chart before creating a new one
+                }
+
+                performanceChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: metric.charAt(0).toUpperCase() + metric.slice(1), // Capitalize first letter
+                            data: data,
+                            borderColor: '#4CAF50',
+                            backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 3,
+                            pointBackgroundColor: '#4CAF50'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false, // Allow chart to fill container
+                        plugins: {
+                            legend: {
+                                display: false // We use a custom legend below the chart
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grid: {
+                                    display: false
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        if (metric === 'spend') return '$' + value.toLocaleString();
+                                        if (metric === 'ctr' || metric === 'conversionRate') return value + '%';
+                                        return value.toLocaleString();
+                                    }
+                                },
+                                grid: {
+                                    color: '#eee'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Initial chart render
+            createOrUpdateChart();
+
+            // Chart filter event listeners
+            document.getElementById('metric-select').addEventListener('change', function() {
+                const selectedMetric = this.value;
+                const selectedTimeframe = document.getElementById('timeframe-select').value;
+                createOrUpdateChart(selectedMetric, selectedTimeframe);
+            });
+
+            document.getElementById('timeframe-select').addEventListener('change', function() {
+                const selectedMetric = document.getElementById('metric-select').value;
+                const selectedTimeframe = this.value;
+                createOrUpdateChart(selectedMetric, selectedTimeframe);
+            });
+
+            document.querySelector('.apply-filters-btn').addEventListener('click', function() {
+                const selectedMetric = document.getElementById('metric-select').value;
+                const selectedTimeframe = document.getElementById('timeframe-select').value;
+                createOrUpdateChart(selectedMetric, selectedTimeframe);
+            });
+
+
+            // Toggle settings dropdown
+            settingsIcon.addEventListener('click', function(event) {
+                settingsDropdown.classList.toggle('show');
+                event.stopPropagation(); // Prevent click from closing immediately
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!settingsDropdown.contains(event.target) && event.target !== settingsIcon) {
+                    settingsDropdown.classList.remove('show');
+                }
+            });
+
+            // Open Alerts Modal
+            openAlertsModalBtn.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                settingsModal.style.display = 'flex';
+                settingsDropdown.classList.remove('show'); // Close dropdown when modal opens
+            });
+
+            // Close Alerts Modal
+            closeModalBtn.addEventListener('click', function() {
+                settingsModal.style.display = 'none';
+            });
+            cancelAlertsBtn.addEventListener('click', function() {
+                settingsModal.style.display = 'none';
+            });
+
+            // Close modal when clicking outside modal content
+            settingsModal.addEventListener('click', function(event) {
+                if (event.target === settingsModal) {
+                    settingsModal.style.display = 'none';
+                }
+            });
+
+            // Handle Save Changes (placeholder)
+            document.getElementById('saveAlerts').addEventListener('click', function() {
+                // In a real application, you would collect all alert data and the checkbox state here
+                const dailySummaryChecked = document.getElementById('dailySummaryEmail').checked;
+                alert('Alert settings saved! Daily Summary Email: ' + (dailySummaryChecked ? 'Enabled' : 'Disabled'));
+                settingsModal.style.display = 'none';
+            });
+
+
+            // Function to get the unit for a given metric
+            function getUnitForMetric(metric) {
+                switch (metric) {
+                    case 'spend': return '$';
+                    case 'impressions': return 'K'; // or M, depending on scale
+                    case 'clicks': return 'K';
+                    case 'ctr': return '%';
+                    case 'conversionRate': return '%';
+                    default: return '';
+                }
+            }
+
+            // Update unit dynamically when metric selection changes
+            alertsList.addEventListener('change', function(event) {
+                if (event.target.classList.contains('metric-select')) {
+                    const selectedMetric = event.target.value;
+                    const alertItem = event.target.closest('.alert-item');
+                    const unitSpan = alertItem.querySelector('.unit');
+                    unitSpan.textContent = getUnitForMetric(selectedMetric);
+                }
+            });
+
+            // Initial unit setup for existing alert items
+            alertsList.querySelectorAll('.alert-item').forEach(item => {
+                const metricSelect = item.querySelector('.metric-select');
+                const unitSpan = item.querySelector('.unit');
+                if (metricSelect && unitSpan) {
+                    unitSpan.textContent = getUnitForMetric(metricSelect.value);
+                }
+            });
+
+            // Add New Alert Threshold
+            addNewAlertBtn.addEventListener('click', function() {
+                const newAlertItem = document.createElement('div');
+                newAlertItem.classList.add('alert-item');
+                newAlertItem.innerHTML = `
+                    <label>
+                        If <select class="metric-select">
+                            <option value="spend">Spend</option>
+                            <option value="impressions">Impressions</option>
+                            <option value="clicks">Clicks</option>
+                            <option value="ctr">CTR</option>
+                            <option value="conversionRate">Conversion Rate</option>
+                        </select>
+                        <select class="condition-select">
+                            <option value="dropsBelow">drops below</option>
+                            <option value="exceeds">exceeds</option>
+                        </select>
+                        <input type="number" class="threshold-input" value="1000">
+                        <span class="unit">$</span>
+                    </label>
+                    <div class="alert-controls">
+                        <button class="remove-alert-btn"><i class="fas fa-trash-alt"></i> Remove</button>
+                    </div>
+                `;
+
+                // Add event listener for the new alert item's metric select
+                const newMetricSelect = newAlertItem.querySelector('.metric-select');
+                const newUnitSpan = newAlertItem.querySelector('.unit');
+                newMetricSelect.addEventListener('change', function() {
+                    newUnitSpan.textContent = getUnitForMetric(this.value);
+                });
+                // Initialize unit for the new alert item
+                newUnitSpan.textContent = getUnitForMetric(newMetricSelect.value);
+
+                // Add event listener for the new alert item's remove button
+                newAlertItem.querySelector('.remove-alert-btn').addEventListener('click', function() {
+                    newAlertItem.remove();
+                });
+
+                alertsList.appendChild(newAlertItem);
+            });
+
+            // Delegate event for existing and future remove buttons
+            alertsList.addEventListener('click', function(event) {
+                if (event.target.classList.contains('remove-alert-btn') || event.target.closest('.remove-alert-btn')) {
+                    const button = event.target.closest('.remove-alert-btn');
+                    button.closest('.alert-item').remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
